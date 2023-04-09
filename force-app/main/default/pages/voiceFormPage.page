@@ -1,0 +1,27 @@
+<apex:page action="{!checkExistingHashKeyMatching}" controller="voiceFormLWCcontroller">
+    <apex:includeLightning />
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <div id="lightningapp" />
+    <script>
+    debugger;
+    var Departments = "{!$CurrentPage.parameters.departments}";
+    var agentrecordId = "{!$CurrentPage.parameters.id}";
+    var urlhashcode = "{!$CurrentPage.parameters.hascode}";
+    var agname = "{!$CurrentPage.parameters.AgentName}";
+    
+    $Lightning.use("c:voiceFormAPP", function () {
+        $Lightning.createComponent("c:voiceForm",
+                                   {'agentrecid' : agentrecordId,
+                                   'DepartmentListstring' : Departments,
+                                   'hashcode' : urlhashcode,
+                                    'agentNameLWC' : agname },
+                                   "lightningapp",
+                                   function (cmp) {
+                                       console.log("Customer Detail is loaded in Vf page");
+                                   }
+                                  );
+    });
+
+    //"recordId" :"{!$CurrentPage.parameters.id}"
+    </script>
+</apex:page>
