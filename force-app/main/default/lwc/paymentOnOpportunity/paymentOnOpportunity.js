@@ -76,18 +76,20 @@ export default class PaymentOnOpportunity extends LightningElement {
             if (data.Due_Amount__c == undefined || data.Due_Amount__c == null || data.Due_Amount__c == 0) {
                 this.oppPendingAmount = data.Amount;
             }
+            
+            else{
+                this.oppPendingAmount = (data.Due_Amount__c);
+                //(this.oppPendingAmount).toFixed(2);
+                if (data.Invoices__r[0].Total_Reciepts__c >= 2) {
+                    this.disableUpfrontAmount = true;
+                    this.PartialUpfrontAmount = data.Due_Amount__c;
+                }
+            }
             if (data.Email__c !=undefined && data.Email__c != null && data.Email__c != '') {
                 this.oppemail = data.Email__c;
             }
             if (data.Phone__c !=undefined && data.Phone__c != null && data.Phone__c != '') {
                 this.oppPhone = data.Phone__c;
-            }
-            else{
-                this.oppPendingAmount = data.Due_Amount__c;
-                if (data.Invoices__r[0].Total_Reciepts__c == 2) {
-                    this.disableUpfrontAmount = true;
-                    this.PartialUpfrontAmount = data.Due_Amount__c;
-                }
             }
             
             
@@ -608,7 +610,7 @@ export default class PaymentOnOpportunity extends LightningElement {
             debugger;
             if (this.Paymentvalue == '100% Payment') {
 
-                UpdateOPPforFullPayment({ recordId: this.recordId, paymentType: 'CC Avenue', LinkexpiryDate : this.selectedExpiryDate })
+                UpdateOPPforFullPayment({ recordId: this.recordId, Amount: this.originalPrice, paymentType: 'CC Avenue', LinkexpiryDate : this.selectedExpiryDate })
                     .then(result => {
 
                         if (result == 'Success') {

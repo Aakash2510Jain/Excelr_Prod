@@ -521,6 +521,7 @@ public without sharing class Utility{
         leadRec.UTM_Variety__c = newAccount.UTM_Variety__c;
         leadRec.UTM_Experiment__c = newAccount.UTM_Experiment__c;
         leadRec.UTM_Medium__c = newAccount.UTM_Medium__c;
+        
         leadRec.Type_of_Course__c = newAccount.Type_of_Course__c;
         leadRec.Lead_Gen_Path__c = newAccount.Lead_Gen_Path__c != null ? newAccount.Lead_Gen_Path__c : 'NA';
         leadRec.GCLID__c = newAccount.GCLID__c;
