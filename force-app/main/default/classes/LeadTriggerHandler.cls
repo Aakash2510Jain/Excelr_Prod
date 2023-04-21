@@ -970,7 +970,7 @@ public without sharing class LeadTriggerHandler{
                     }
                     if ((ld.status == Constants.LEAD_STATUS_ATC || ld.status == Constants.LEAD_STATUS_DEAD || ld.status == Constants.LEAD_STATUS_JUNK || ld.status == Constants.LEAD_STATUS_OPEN ||  ld.status == Constants.LEAD_STATUS_PROMOTE)) {
                         string errormessage = 'you cannot park Lead From ' + oldLeadMap.get(ld.Id).status + ' to ' + ld.status;
-                        ld.Next_follow_up_date_time__c.addError(errormessage);
+                        //ld.Next_follow_up_date_time__c.addError(errormessage);
                     }
                     
                 }
@@ -1009,9 +1009,6 @@ public without sharing class LeadTriggerHandler{
             if (ld.Year_of_Graduation__c == null){
                 ld.Year_of_Graduation__c.addError('Year of Graduation can not be Empty');
             }
-            if (ld.Specialization__c == null){
-                ld.Specialization__c.addError('Specialization can not be Empty');
-            }
             if (ld.Branch__c == null){
                 ld.Branch__c.addError('Branch can not be Empty');
             }
@@ -1036,9 +1033,6 @@ public without sharing class LeadTriggerHandler{
             }
             if (ld.Year_of_Graduation__c == null){
                 ld.Year_of_Graduation__c.addError('Year of Graduation can not be Empty');
-            }
-            if (ld.Specialization__c == null){
-                ld.Specialization__c.addError('Specialization can not be Empty');
             }
             if (ld.Branch__c == null){
                 ld.Branch__c.addError('Branch can not be Empty');

@@ -233,6 +233,7 @@ export default class chatForm extends LightningElement {
                 }
                 this.courssweList = tempcoursearr;
                 this.courssweList.sort((a, b) => (a.label > b.label) ? 1 : -1);
+                console.log('CCourseList=', this.courssweList);
 
             }
 
@@ -850,6 +851,7 @@ export default class chatForm extends LightningElement {
 
         })
         .catch(error => {
+            console.log('error Create Lead--',error);
             this.handleSpinner();
             this.handleAlert('Error updating or reloading records');
             this.HandleLeadCreatedisable = false;

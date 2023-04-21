@@ -1,4 +1,4 @@
-public class PaymentProcessOnOpportunityController {
+public without sharing class PaymentProcessOnOpportunityController {
     
     @AuraEnabled(Cacheable = True)
     Public Static Map<String, List<Decimal>> ShowNbfcPartners(){

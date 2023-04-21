@@ -1,4 +1,4 @@
-public with sharing class RazorpayPaymentHandler {
+public without sharing class RazorpayPaymentHandler {
     
     public static String sendPaymentLink(String recordId){ //invoice id will come here
         
@@ -91,7 +91,7 @@ public with sharing class RazorpayPaymentHandler {
             String name;
             String ISMEmail;
             Decimal amount = 0.0;
-            
+            system.debug('iv.Payment_Type__c---->'+iv.Payment_Type__c);
                 if (iv.Payment_Type__c == Constants.INVOICE_PAYMENT_TYPE_FULLPAYMENT) {
                     if(iv.Amount__c != null){
                         amount = iv.Amount__c;   
@@ -99,9 +99,11 @@ public with sharing class RazorpayPaymentHandler {
                 }
                 if (iv.Payment_Type__c == Constants.INVOICE_PAYMENT_TYPE_PARTIALPAYMENT) {
                     if (!iv.Receipts__r.isempty() && iv.Receipts__r.size() >0) {
-                        if (iv.Receipts__r[0].Receipt_Status__c == Constants.RECEIPT_STATUS_LINKSENT) {
-                            amount = iv.Receipts__r[0].Amount__c ; 
-                        }
+                        for(Receipt__c receipt : iv.Receipts__r){
+                            if (receipt.Receipt_Status__c == Constants.RECEIPT_STATUS_LINKSENT) {
+                                amount = receipt.Amount__c ; 
+                            }
+                        }                       
                     }
                 }
                 
@@ -148,7 +150,7 @@ public with sharing class RazorpayPaymentHandler {
         try {
             
             razorpayRequestJSON razorpayRequestJSON = new RazorpayRequestJSON();
-            
+            amount = amount*100;
             razorpayRequestJSON.amount = amount;
             razorpayRequestJSON.first_min_partial_amount = amount;
             razorpayRequestJSON.expire_by = expirydateString;  //"expire_by": 1691097057,  "expired_at": 0,
