@@ -1,4 +1,4 @@
-public class CreateAndUpdateTaskOnLeadRecordID{
+public without sharing class CreateAndUpdateTaskOnLeadRecordID{
     
     public static void CreateandUpdatetask(string jsonstring, string leadId){
         
@@ -95,11 +95,10 @@ public class CreateAndUpdateTaskOnLeadRecordID{
                                     System.debug('The following error has occurred.');
                                     System.debug(err.getStatusCode() + ': ' + err.getMessage());
                                     System.debug('Account fields that affected this error: ' + err.getFields());
-                                    Utility.API_ErrorORSuccess(err.getFields(), err.getMessage(), Integer.valueof(err.getStatusCode()), null, 'WebhookForFuture', 'uploadcalllogs', jsonstring);
+                                    Utility.API_ErrorORSuccess(err.getFields(), err.getMessage(), String.valueof(err.getStatusCode()), null, 'WebhookForFuture', 'uploadcalllogs', jsonstring);
                                 }
                             }
                         }
-                        
                     }
                 }
                 
